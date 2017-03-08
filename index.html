@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Permission Prompts in iframes</title>
+</head>
+<body>
+  <button id="geo" onclick="navigator.geolocation.getCurrentPosition(() => {})">Geolocation</button>
+  <button id="webRTC-shareDevices" onclick="shareDevice({video: true});">Video</button>
+  <button id="webRTC-shareMicrophone" onclick="shareDevice({audio: true});">Audio</button>
+  <button id="webRTC-shareDevices2" onclick="shareDevice({audio: true, video: true});">Audio and Video</button>
+  <button id="webRTC-shareScreen" onclick="shareDevice({video: {mediaSource: 'screen'}});">Screen</button>
+  <button id="web-notifications" onclick="Notification.requestPermission()">web-notifications</button>
+  <script type="application/javascript">
+   // Share device used in onclick calls above.
+   /* exported shareDevice */
+   function shareDevice(config) {
+     navigator.mediaDevices.getUserMedia(config);
+   }
+  </script>
+  <iframe width="500" height="500" src="https://permission.site"></iframe>
+  <iframe width="500" height="500" src="https://people-mozilla.org/~fqueze2/webrtc/"></iframe>
+</body>
+</html>
