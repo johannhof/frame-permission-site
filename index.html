@@ -3,22 +3,45 @@
 <head>
   <meta charset="utf-8">
   <title>Permission Prompts in iframes</title>
+  <style>
+    .site {
+      float: left;
+      margin: 15px;
+    }
+    button {
+      display: block;
+      padding: 5px;
+    }
+  </style>
 </head>
 <body>
-  <button id="geo" onclick="navigator.geolocation.getCurrentPosition(() => {})">Geolocation</button>
-  <button id="webRTC-shareDevices" onclick="shareDevice({video: true});">Video</button>
-  <button id="webRTC-shareMicrophone" onclick="shareDevice({audio: true});">Audio</button>
-  <button id="webRTC-shareDevices2" onclick="shareDevice({audio: true, video: true});">Audio and Video</button>
-  <button id="webRTC-shareScreen" onclick="shareDevice({video: {mediaSource: 'screen'}});">Screen</button>
-  <button id="web-notifications" onclick="Notification.requestPermission()">web-notifications</button>
-  <script type="application/javascript">
-   // Share device used in onclick calls above.
-   /* exported shareDevice */
-   function shareDevice(config) {
-     navigator.mediaDevices.getUserMedia(config);
-   }
-  </script>
-  <iframe width="500" height="500" src="https://permission.site"></iframe>
-  <iframe width="500" height="500" src="https://people-mozilla.org/~fqueze2/webrtc/"></iframe>
+  <div class="site">
+    <h2>This page</h2>
+    <button id="geo" onclick="navigator.geolocation.getCurrentPosition(() => {})">Geolocation</button>
+    <button id="webRTC-shareDevices" onclick="shareDevice({video: true});">Video</button>
+    <button id="webRTC-shareMicrophone" onclick="shareDevice({audio: true});">Audio</button>
+    <button id="webRTC-shareDevices2" onclick="shareDevice({audio: true, video: true});">Audio and Video</button>
+    <button id="webRTC-shareScreen" onclick="shareDevice({video: {mediaSource: 'screen'}});">Screen</button>
+    <button id="web-notifications" onclick="Notification.requestPermission()">web-notifications</button>
+    <script type="application/javascript">
+     // Share device used in onclick calls above.
+     /* exported shareDevice */
+     function shareDevice(config) {
+       navigator.mediaDevices.getUserMedia(config);
+     }
+    </script>
+  </div>
+  <div class="site">
+    <h2>http://permission.site</h2>
+    <iframe width="500" height="500" src="http://permission.site"></iframe>
+  </div>
+  <div class="site">
+    <h2>https://permission.site</h2>
+    <iframe width="500" height="500" src="https://permission.site"></iframe>
+  </div>
+  <div class="site">
+    <h2>https://people-mozilla.org/~fqueze2/webrtc/</h2>
+    <iframe width="500" height="500" src="https://people-mozilla.org/~fqueze2/webrtc/"></iframe>
+  </div>
 </body>
 </html>
